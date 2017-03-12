@@ -1,0 +1,14 @@
+{
+  "name": "yarn-demo",
+  "version": "1.0.0",
+  "description": "yarn-demo",
+  "scripts":{
+    "help":"node -v"
+  },
+  "main": "index.js",
+  "author": "Liu",
+  "license": "MIT",
+  "dependencies": {
+    "webpack": "^2.2.1"
+  }
+}

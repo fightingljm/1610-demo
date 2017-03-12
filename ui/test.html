@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>发送 ajax 请求的方式</title>
+</head>
+<body>
+  <div id="name">数据还没过来</div>
+  <div id="img"></div>
+  <script src="http://cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+  <script type="text/javascript">
+    // //JSON
+    // let arr = {name:'liu',age:22};
+    // let json = JSON.stringify(arr);
+    // console.log(json)
+    //
+    // let jsonObj = JSON.parse(json)
+    // console.log(jsonObj)
+    // console.log(jsonObj.name)
+
+    // //ajax 原生 XMLHttpRequest()
+    // var ajax = new XMLHttpRequest();
+    //
+    // ajax.onreadystatechange = function () {
+    //   console.log(ajax.readyState);
+    //   if(ajax.readyState==4 && ajax.status==200){
+    //     console.log(typeof ajax.responseText);
+    //     let data = JSON.parse(ajax.responseText);
+    //     console.log(data);
+    //     document.getElementById('name').innerHTML = data.name;
+    //   }
+    // }
+    //
+    // ajax.open("GET","https://api.github.com/users/fightingljm",true)
+    // ajax.send();
+
+    //ajax jquery $.ajax({type:'POST',data:string,success:function(){}})
+    // $.ajax({
+    //   type:'GET',//默认
+    //   url:'https://api.github.com/users/fightingljm',
+    //   success:function (data,status) {
+    //     console.log(data,status);
+    //   }
+    // })
+
+    // $.ajax({
+    //   type:'POST',
+    //   data:{
+    //     accesstoken:'3aae6c64-7539-44d7-8494-ff0acaa36ce1'
+    //   },
+    //   url:' https://cnodejs.org/api/v1/accesstoken',
+    //   success:function (data,status) {
+    //     // console.log(data,status);
+    //     $('#name').html(data.loginname)
+    //     $('#img').append(`<img src="${data.avatar_url}"/>`)
+    //   }
+    // })
+
+    // //链式操作
+    // $.ajax({
+    //   type:'POST',
+    //   data:{
+    //     accesstoken:'3aae6c64-7539-44d7-8494-ff0acaa36ce1'
+    //   },
+    //   url:' https://cnodejs.org/api/v1/accesstoken'
+    // }).done(function (data,status) {
+    //   // console.log(data,status);
+    //   $('#name').html(data.loginname)
+    //   $('#img').append(`<img src="${data.avatar_url}"/>`)
+    // }).fail(function () {
+    //   alert('aaa')
+    // })
+
+    // //跨域请求
+    // //跨域请求 http 协议的规定就是不同源之间不能进行资源共享
+    // //https://api.github.com:80 这一段如果有不同的都叫跨域
+    // //一般后台设置 Access-Control-Allow-Origin:*  就能解决
+    // $.ajax({
+    //   dataType:'jsonp',
+    //   jsonp:'callback',
+    //   //jsonp 请求只能 GET
+    //   url:' https://api.douban.com/v2/book/1220562'
+    // }).done(function (data,status) {
+    //   console.log(data,status);
+    // }).fail(function (xhr,error) {
+    //   alert(error)
+    // })
+  </script>
+
+  <script type="text/javascript">
+    // fetch
+    // fetch('url').then(res=>res.json()).then(json=>do()).catch(err=>alert('err'))
+    //get 请求
+    // fetch('https://api.github.com/users/fightingljm',{method:'GET'})
+    //   .then(response=>response.json())
+    //   .then(json=>console.log(json))
+
+    // //post 请求
+    // fetch('https://cnodejs.org/api/v1/accesstoken', {
+    //   method: 'POST',
+    //   headers: {'Content-Type': 'application/json'},
+    //   body: JSON.stringify({
+    //     accesstoken:'3aae6c64-7539-44d7-8494-ff0acaa36ce1'
+    //   })
+    // })
+    //   .then(res=>res.json())
+    //   .then(json=>console.log(json))
+
+
+    // //理解 Promise then
+    // new Promise(function (resolve,reject) {
+    //   console.log('Run!');
+    //   setTimeout(function () {
+    //     reject()
+    //   },3000);
+    // }).then(function () {
+    //   console.log('thing.then()...');
+    // }).catch(function () {
+    //   console.log('thing.catch()...');
+    // })
+  </script>
+
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script type="text/javascript">
+    //axios
+    //get
+    // axios.get('https://api.github.com/users/fightingljm')
+    //   .then(response=> console.log(response))
+    //   .catch(error=> console.log(error))
+
+    //POST
+    axios.post('https://cnodejs.org/api/v1/accesstoken',{
+      accesstoken:'3aae6c64-7539-44d7-8494-ff0acaa36ce1'
+    })
+      .then(response=> console.log(response.data))
+      .catch(error=> console.log(error))
+  </script>
+</body>
+</html>
