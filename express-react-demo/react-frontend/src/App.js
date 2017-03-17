@@ -35,41 +35,70 @@
 // export default App;
 
 
+// import React from 'react';
+// import axios from 'axios';
+//
+// class App extends React.Component {
+//   constructor() {
+//     super();
+//     this.state={
+//       user:'',
+//       inputValue:'123'
+//     }
+//   }
+//   handleChange(e){
+//     this.setState({inputValue:e.target.value})
+//   }
+//   handleSubmit(e){
+//     e.preventDefault();
+//     console.log(this.state.inputValue);
+//     axios.post('http://tiger.haoduoshipin.com/login',{
+//       username:`${this.state.inputValue}`
+//     })
+//       .then(respons => {
+//         console.log(respons);
+//         this.setState({user:respons.data.msg})
+//       })
+//   }
+//   render(){
+//     return(
+//       <div>
+//         <div>
+//           {this.state.user}
+//         </div>
+//         <form action='http://tiger.haoduoshipin.com/login' method='POST'
+//         onSubmit={this.handleSubmit.bind(this)} ref='form'>
+//           <input type='text' value={this.state.inputValue}
+//             onChange={this.handleChange.bind(this)}/>
+//           <button>提交</button>
+//         </form>
+//       </div>
+//     )
+//   }
+// }
+//
+// export default App;
+
+
 import React from 'react';
 import axios from 'axios';
 
 class App extends React.Component {
-  constructor() {
-    super();
-    this.state={
-      user:'',
-      inputValue:'123'
-    }
-  }
-  handleChange(e){
-    this.setState({inputValue:e.target.value})
-  }
   handleSubmit(e){
     e.preventDefault();
-    console.log(this.state.inputValue);
-    axios.post('http://tiger.haoduoshipin.com/login',{
-      username:`${this.state.inputValue}`
-    })
+    let username = this.refs.username.value;
+    axios.post('http://tiger.haoduoshipin.com/login',{username})
       .then(respons => {
         console.log(respons);
-        this.setState({user:respons.data.msg})
       })
   }
   render(){
     return(
       <div>
-        <div>
-          {this.state.user}
-        </div>
+        Test API
         <form action='http://tiger.haoduoshipin.com/login' method='POST'
-        onSubmit={this.handleSubmit.bind(this)} ref='form'>
-          <input type='text' value={this.state.inputValue}
-            onChange={this.handleChange.bind(this)}/>
+          onSubmit={this.handleSubmit.bind(this)} >
+          <input ref='username'/>
           <button>提交</button>
         </form>
       </div>
