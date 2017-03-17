@@ -1,0 +1,12 @@
+html
+  style
+    include main.css
+  body
+    if username
+      p 你好,
+        span= username
+          pre ！欢迎登录!
+            a(href='./logout') 退出
+    else
+      p 你好,
+        a(href='./login') 请登录
